@@ -5,7 +5,7 @@ var p = require('webpage').create();
 var sys = require('system');
 
 p.onConsoleMessage = function (x) {
-    fs.write("/dev/stdout", x, "w");
+    sys.stdout.write(x);
 };
 
 p.injectJs(phantom.args[0]);

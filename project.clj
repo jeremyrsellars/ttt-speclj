@@ -15,7 +15,7 @@
                                      :compiler       {:output-to     "js/ttt_dev.js"
                                                       :optimizations :whitespace
                                                       :pretty-print  true}
-                                     :notify-command ["/Users/jeremy.sellars/AppData/Roaming/npm/node_modules/phantomjs/lib/phantom/phantomjs.exe"  "bin/speclj" "js/ttt_dev.js"]}
+                                     :notify-command ["/Users/jeremy.sellars/AppData/Roaming/npm/node_modules/phantomjs/lib/phantom/phantomjs.exe" "bin/speclj" "js/ttt_dev.js"]}
 
                               :prod {:source-paths ["src/cljs"]
                                      :compiler     {:output-to     "js/ttt.js"
