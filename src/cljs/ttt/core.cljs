@@ -17,7 +17,7 @@
 (defn mark [board player [row col]]
   (when-not (and (<= 0 row 2)
                  (<= 0 col 2))
-    (throw (js/Error. "Cannot mark off board")))
+    (throw (js/Error. "Cannot place mark out of bounds")))
   (when (get-in board [row col] player)
     (throw (js/Error. "Location already marked")))
   (assoc-in board [row col] player))
