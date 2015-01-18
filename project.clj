@@ -17,7 +17,7 @@
 
     :cljsbuild {:builds        {:dev  {:source-paths   ["src/cljs" "spec/cljs"]
                                        :compiler       {:output-to     "js/ttt_dev.js"
-                                                        :optimizations :whitespace
+                                                        :optimizations :simple
                                                         :pretty-print  true}
                                        :notify-command [~phantomjs "bin/speclj" "js/ttt_dev.js"]}
 

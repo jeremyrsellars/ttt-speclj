@@ -10,6 +10,7 @@
 
 (def ^:constant cannot-mark-out-of-bounds "Cannot place mark out of bounds")
 (def ^:constant location-alread-marked "Location already marked")
+(def ^:constant wrong-player "Wrong player")
 
 (context "A tic-tac-toe game"
   (with-all game (ttt/init-game))
@@ -37,7 +38,7 @@
       (should-throw js/Error cannot-mark-out-of-bounds
         (ttt/mark @board :x [0 3]))))
 
-  (describe "game when an x is placed in first row, second column"
+  (describe "when an x is placed in first row, second column"
     (it "has an x only in [0 1]"
       (should=
         [[nil :x nil]
@@ -47,19 +48,10 @@
             (ttt/move :x [0 1]))
             :board))
 
-    (it "cannot mark the same space again"
-      (should-throw js/Error location-alread-marked
-        (ttt/move (-> (ttt/init-game) (ttt/move :x [0 1])) :x [0 1]))))
-
-  (describe "when an x is placed in first row, second column"
-    (with-all board (-> (ttt/init-board)
-                        (ttt/mark :x [0 1])))
-    (it "has an x only in [0 1]"
-      (should=
-        [[nil :x nil]
-         [nil nil nil]
-         [nil nil nil]] @board))
+    (it "only the next player can play"
+      (should-throw js/Error wrong-player
+        (ttt/move (-> (ttt/init-game) (ttt/move :x [1 1])) :x [0 1])))
 
     (it "cannot mark the same space again"
       (should-throw js/Error location-alread-marked
-        (ttt/mark @board :x [0 1])))))
+        (ttt/move (-> (ttt/init-game) (ttt/move :x [1 1])) :o [1 1])))))

@@ -11,7 +11,7 @@
 
 (defn- toggle-player [p]
   (if (= :x p)
-    :y
+    :o
     :x))
 
 (defn mark [board player [row col]]
@@ -23,7 +23,8 @@
   (assoc-in board [row col] player))
 
 (defn move [{:keys [board next-player] :as game} player location]
+  (when-not (= next-player player)
+    (throw (js/Error. "Wrong player")))
   (assoc game
     :board (mark board player location)
     :next-player (toggle-player next-player)))
-
